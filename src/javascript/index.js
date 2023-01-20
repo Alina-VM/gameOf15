@@ -26,14 +26,19 @@ function replaceNumber() {
             if(numbers[i].textContent !== "") {
                 let number = event.target.textContent;
                 let indexNum = currentArr.indexOf(number);
-                let indexSpace = currentArr.indexOf('');              
+                let indexSpace = currentArr.indexOf('');
+                if(indexNum === 7 && indexSpace === 8 || indexNum === 8 && indexSpace === 7 
+                    || indexNum === 12 && indexSpace === 11 || indexNum === 11 && indexSpace === 12
+                    || indexNum === 3 && indexSpace === 4 || indexNum === 4 && indexSpace === 3) {
+                        return
+                    }           
                 if(Math.abs(indexNum - indexSpace) === 4 || Math.abs(indexNum - indexSpace) === 1) {                   
                     let temp = currentArr[indexNum];
                     currentArr[indexNum] = currentArr[indexSpace];
                     currentArr[indexSpace] = temp; 
                     // console.log(currentArr.join())
                     // console.log(MainArr.join())
-                    if (currentArr[3] === MainArr[3]) {
+                    if (currentArr.join() === MainArr.join()) {
                         let winpic = document.getElementById('winpic');
                         winpic.classList.remove('winpictureOff');
                         winpic.classList.add('winpictureOn');
